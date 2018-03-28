@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>RaidPost</title>
+<style>
+body {
+	font-size: 1em;
+}
+</style>
+</head>
+<body>
+
+<table><tr>
+<td>
+<select id="locName" onchange="updateCmd()" style="width:10em">
+  <option value="33.746157,-117.175577">4 Headed Lion Fountain (Cremation Society)</option>
+  <option value="33.728929,-117.206026">9-11 Memorial Menifee</option>
+  <option value="33.678676,-117.224269">Audie Murphy Ranch Sports Park</option>
+  <option value="33.684805,-117.155227">Batter Up! Ball and Bat Sculpture</option>
+  <option value="33.677948,-117.17422">Bird Mural (Petco)</option>
+  <option value="33.688808,-117.177143">Calvary Hills Church (Impact Church)</option>
+  <option value="33.641105,-117.16926">Carl and Margaret Karcher Dedication Plaque (Scott Rd)</option>
+  <option value="33.685561,-117.203926">Carl And Margaret Karcher Plaque (Newport)</option>
+  <option value="33.628645,-117.168763">Community Garden</option>
+  <option value="33.628645,-117.168763">Community Garden (Kaiser Permanente Hospital)</option>
+  <option value="33.638976,-117.201617">Cowboy Art Work</option>
+  <option value="33.723204,-117.212205">Family Circle Park Gazebo</option>
+  <option value="33.683576,-117.175169">Fire Patio (DogHaus)</option>
+  <option value="33.717491,-117.189937">First Church of Christ</option>
+  <option value="33.67451,-117.168249">Flag Pole Memorial (MSJC)</option>
+  <option value="33.610282,-117.130804">Handprint Mural</option>
+  <option value="33.72161,-117.14958">Heritage Park 1</option>
+  <option value="33.721302,-117.148376">Heritage Park 2</option>
+  <option value="33.665467,-117.153384">Hidden Meadows Park</option>
+  <option value="33.614656,-117.168501">Jesus Blessing the Children (Loma Linda Hospital)</option>
+  <option value="33.690172,-117.221722">La Ladera Park</option>
+  <option value="33.678807,-117.154393">La Paloma Park Playground</option>
+  <option value="33.704284,-117.145157">Mahogany Creek Park</option>
+  <option value="33.616046,-117.134003">Mahogany Meadow Park</option>
+  <option value="33.630256,-117.162321">Mapleton Park Field</option>
+  <option value="33.629712,-117.163094">Mapleton Park Gazebo</option>
+  <option value="33.648849,-117.205153">Menifee Fire Station Dedication Statue</option>
+  <option value="33.685441,-117.167044">Menifee Lakes Fountain</option>
+  <option value="33.677042,-117.162998">Menifee Lakes Gazebo</option>
+  <option value="33.68084,-117.172783">Menifee SB Mural (Target)</option>
+  <option value="33.710511,-117.154238">Menifee Valley Flyers Club</option>
+  <option value="33.675487,-117.158198">Menifee Veterans Memorial (Wheat Field Park)</option>
+  <option value="33.684603,-117.175216">Menifee Water Fountain (Chipotle)</option>
+  <option value="33.729581,-117.204863">Miller Mortuary Fountains</option>
+  <option value="33.64749,-117.141268">Mira Park</option>
+  <option value="33.743269,-117.165326">Mottes Romola Farms (Motte Car Museum)</option>
+  <option value="33.676607,-117.16984">Mount San Jacinto College Menifee campus sign</option>
+  <option value="33.675002,-117.166407">MSJC Veterans Mural</option>
+  <option value="33.685236,-117.185686">Newport Commons Fountain</option>
+  <option value="33.685284,-117.175776">Newport Hub (Circle K)</option>
+  <option value="33.68306,-117.211136">Painted Patriotic Eagle Rock</option>
+  <option value="33.680018,-117.186897">Park Gazebo (Lyle Marsh Park)</option>
+  <option value="33.711658,-117.191268">Provecho Street Art Mural</option>
+  <option value="33.713746,-117.186312">Rancho Ramona Park</option>
+  <option value="33.642151,-117.150843">Revival Church Fountain</option>
+  <option value="33.699273,-117.154461">Riverside Regional Trail  (Aldergate Dog Park)</option>
+  <option value="33.639521,-117.174692">Shops at Scott Fountain</option>
+  <option value="33.603976,-117.125139">Spencer's Crossing Sports Park</option>
+  <option value="33.684663, -117.176703">Sprint Store (Menifee)</option>
+  <option value="33.715754,-117.207518">St. Vincent Perrish</option>
+  <option value="33.718988,-117.192575">Sun City Mobile Home Estates Fountain</option>
+  <option value="33.75077000,-117.18318500">Sun Leisure Fountain</option>
+  <option value="33.640891,-117.204897">Terry Smith Plaque (Menifee Market and Feed)</option>
+  <option value="33.686624,-117.189468">Valley Seventh Day Adventist Church</option>
+  <option value="33.679887,-117.175355">Vegetable Mural (Miguel Jr's)</option>
+  <option value="33.674284,-117.136852">Wilderness Lakes</option>
+  <option value="33.637563,-117.147136">Woodbine Park Playground Towers</option>
+  <option value="33.743321,-117.165538">Wooded Water Tower and Windmill    (Motte Car Museum)</option>
+</select>
+</td>
+<td colspan="2">
+<label><input type="radio" name="raidType" onclick="eggSel();updateCmd()">Egg</label>
+<label><input type="radio" name="raidType" onclick="raidSel();updateCmd()">Raid</label>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="width:10em;">
+<div id="dynTxt">Mins until ...</div>
+</td>
+<td>
+<input type="text" id="mins" onkeyup="updateCmd()" size="2"/>
+</td>
+</tr>
+<tr>
+<td colspan="3">
+<input type="text" id="outputCmd" onclick="updateCmd();select()" style="width:20em" />
+</td>
+</tr></table>
+
+<script>
+var locCoords="", eventAction="", minsTil="";
+function eggSel(){
+	document.getElementById("dynTxt").innerHTML="Mins until Spawn?";
+	eventAction=" start:"; minsTil=document.getElementById("mins").value;
+    eventAndMins=eventAction+minsTil;
+    locCoords=document.getElementById("locName").value;
+}
+function raidSel(){
+	document.getElementById("dynTxt").innerHTML="Mins until DeSpawn?";
+	eventAction=" end:"; minsTil=document.getElementById("mins").value;
+    eventAndMins=eventAction+minsTil;
+    locCoords=document.getElementById("locName").value;
+}
+function updateCmd(){
+	minsTil=document.getElementById("mins").value;
+	locCoords=document.getElementById("locName").value;
+    eventAndMins=eventAction+minsTil;
+    document.getElementById("outputCmd").value="!rp loc:"+locCoords+eventAndMins;
+}
+</script>
+
+</body>
+</html>
+
