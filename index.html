@@ -4,17 +4,15 @@
 <title>RaidPost</title>
 <style>
 html {
-	width: 32em;
 	margin: auto;
-	padding: 0;
 	display: block;
 }
 body {
-	padding: 0;
+	padding: 0.5em;
 	margin: auto;
 }
 body,select,input,label,div {
-	font-size: 1.3em
+	font-size: 2em
 }
 table {
 	display: block;
@@ -176,7 +174,7 @@ clipboard.on('success', function(e) {
 });
 
 clipboard.on('error', function(e) {
-	alert("Error copying.  Please manually copy.")
+		alert("Error copying.  Please manually copy.")
 	console.error('Action:', e.action);
 	console.error('Trigger:', e.trigger);
 });
