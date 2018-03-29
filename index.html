@@ -4,15 +4,37 @@
 <title>RaidPost</title>
 <style>
 body,select,input,label,div {
-	font-size: 1.3em;
+	font-size: 1.3em
 }
 input[type="radio"] {
 	width: 1em;
-    height: 1em;
+    height: 1em
+}
+input{
+	padding: 0.1em 0.3em
+}
+.copied {
+	display: none;
+	margin: auto;
+    padding-top: 1em;
+	text-align: center;
+	background: rgba(0,0,0,0.8);
+	font-size: 2em;
+	font-family: Arial;
+	font-weight: bold;
+	color: #FFF;
+	width: 100%;
+	height: 100%;
+	z-index: 99999;
+	position: absolute
 }
 </style>
 </head>
 <body>
+
+<div class="copied" id="copied">
+	Copied
+</div>
 
 <table><tr>
 <td>
@@ -92,10 +114,11 @@ input[type="radio"] {
 </tr>
 <tr>
 <td colspan="3">
-<input type="text" id="outputCmd" onclick="updateCmd();select()" style="width:20em" />
+<input type="text" id="outputCmd" data-clipboard-target="#outputCmd" onclick="updateCmd();select()" style="width:18em" />
 </td>
 </tr></table>
 
+<script src='https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.min.js'></script>
 <script>
 var locCoords="", eventAction="", minsTil="";
 function eggSel(){
@@ -116,8 +139,34 @@ function updateCmd(){
     eventAndMins=eventAction+minsTil;
     document.getElementById("outputCmd").value="!rp loc:"+locCoords+eventAndMins;
 }
+function copied() {
+	var x = document.getElementById("copied");
+	x.style.display="block";
+	setTimeout(function(){x.style.display="none"}, 1500);
+}
+
+function copyToClipboard(text) {
+	alert(text);
+	window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
+}
+
+var clipboard = new Clipboard('#outputCmd');
+
+clipboard.on('success', function(e) {
+    copied();
+    console.info('Action:', e.action);
+    console.info('Text:', e.text);
+    console.info('Trigger:', e.trigger);
+
+    e.clearSelection();
+});
+
+clipboard.on('error', function(e) {
+		alert("Error copying.  Please manually copy.")
+    console.error('Action:', e.action);
+    console.error('Trigger:', e.trigger);
+});
 </script>
 
 </body>
 </html>
-
