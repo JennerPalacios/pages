@@ -25,28 +25,24 @@ input[type="radio"] {
 input{
 	padding: 0.1em 0.3em
 }
+#outputCmd, .copied{
+	width:18em;
+}
 .copied {
 	display: none;
 	margin: auto;
-	padding-top: 1em;
+	padding: 0.2em 0.4em;
 	text-align: center;
-	background: rgba(0,0,0,0.8);
-	font-size: 2em;
+	background: rgba(0,0,0,0.9);
 	font-family: Arial;
 	font-weight: bold;
 	color: #FFF;
-	width: 12.4em;
-	height: 2.4em;
 	z-index: 99999;
 	position: absolute
 }
 </style>
 </head>
 <body>
-
-<div class="copied" id="copied">
-	Copied
-</div>
 
 <table><tr>
 <td>
@@ -126,7 +122,8 @@ input{
 </tr>
 <tr>
 <td colspan="3">
-<input type="text" id="outputCmd" data-clipboard-target="#outputCmd" onclick="updateCmd();select()" style="width:18em" readonly />
+<div class="copied" id="copied">Copied</div>
+<input type="text" id="outputCmd" data-clipboard-target="#outputCmd" onclick="updateCmd();select()" readonly />
 </td>
 </tr></table>
 
