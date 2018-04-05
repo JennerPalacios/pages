@@ -6,6 +6,7 @@
 html {
 	margin: auto;
 	display: block;
+	line-height: 4em;
 }
 body {
 	padding: 0.5em;
@@ -18,20 +19,28 @@ table {
 	display: block;
 	margin: auto;
 }
+select{
+	width: 10em;
+	height: 2em
+}
 input[type="radio"] {
 	width: 0.8em;
 	height: 0.8em
 }
 input{
-	padding: 0.1em 0.3em
+	padding: 0.5em 0.3em
 }
 #outputCmd, .copied{
 	width:18em;
 }
+#mins{
+	width: 7em;
+	text-align: center;
+}
 .copied {
 	display: none;
 	margin: auto;
-	padding: 0.2em 0.4em;
+	padding: 0.5em 0.4em;
 	text-align: center;
 	background: rgba(0,0,0,0.9);
 	font-family: Arial;
@@ -46,7 +55,7 @@ input{
 
 <table><tr>
 <td>
-<select id="locName" onchange="updateCmd()" style="width:10em">
+<select id="locName" onchange="updateCmd()">
   <option value="33.746157,-117.175577">4 Headed Lion Fountain (Cremation Society)</option>
   <option value="33.728929,-117.206026">9-11 Memorial Menifee</option>
   <option value="33.678676,-117.224269">Audie Murphy Ranch Sports Park</option>
@@ -117,7 +126,7 @@ input{
 <div id="dynTxt">Mins until ...</div>
 </td>
 <td>
-<input type="text" id="mins" onkeyup="updateCmd()" size="3"/>
+<input type="number" id="mins" onkeyup="updateCmd()" />
 </td>
 </tr>
 <tr>
