@@ -123,7 +123,7 @@ input{
 </tr>
 <tr>
 <td colspan="2" style="width:10em;">
-<div id="dynTxt">Mins until ...</div>
+<div id="dynTxt"> &raquo; Mins until ...</div>
 </td>
 <td>
 <input type="number" id="mins" onkeyup="updateCmd()" />
@@ -140,13 +140,13 @@ input{
 <script>
 var locCoords="", eventAction="", minsTil="";
 function eggSel(){
-	document.getElementById("dynTxt").innerHTML="Mins until Hatch?";
+	document.getElementById("dynTxt").innerHTML=" &raquo; Mins until <b>Hatch</b>?";
 	eventAction=" start:"; minsTil=document.getElementById("mins").value;
 	eventAndMins=eventAction+minsTil;
 	locCoords=document.getElementById("locName").value;
 }
 function raidSel(){
-	document.getElementById("dynTxt").innerHTML="Mins until DeSpawn?";
+	document.getElementById("dynTxt").innerHTML=" &raquo; Mins until <b>DeSpawn</b>?";
 	eventAction=" end:"; minsTil=document.getElementById("mins").value;
 	eventAndMins=eventAction+minsTil;
 	locCoords=document.getElementById("locName").value;
